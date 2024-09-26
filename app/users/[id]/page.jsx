@@ -7,6 +7,9 @@ export default async function UsersDetail({ params }) {
   const res = await fetch(`https://dummyjson.com/users/${id}/todos`);
   const usersTodos = await res.json();
 
+  const completedTodos = usersTodos.todos.filter(todo => todo.completed);
+  const incompleteTodos = usersTodos.todos.filter(todo => !todo.completed);
+
   return (
     <div className="usersDetail">
       <Link href={"/"} className="backLink"> <Back /> </Link>
@@ -28,38 +31,39 @@ export default async function UsersDetail({ params }) {
       </div>
 
       <div className="todosContainer">
-        <div className="allTodos">
-          <h2>TODOS</h2>
-          {usersTodos.todos
-            .map(x => (
+        {usersTodos.todos.length > 0 && (
+          <div className="allTodos">
+            <h2>TODOS</h2>
+            {usersTodos.todos.map(x => (
               <div className="userDetailTodo" key={x.id}>
                 <p>{x.todo}</p>
               </div>
             ))}
-        </div>
+          </div>
+        )}
 
-        <div className="completedTodos">
-          <h2>completed</h2>
-          {usersTodos.todos
-            .filter(todo => todo.completed) 
-            .map(x => (
+        {completedTodos.length > 0 && (
+          <div className="completedTodos">
+            <h2>Completed</h2>
+            {completedTodos.map(x => (
               <div className="userDetailTodo" key={x.id}>
                 <p>{x.todo}</p>
               </div>
             ))}
-        </div>
+          </div>
+        )}
 
-        <div className="incompleteTodos">
-          <h2>incomplete</h2>
-          {usersTodos.todos
-            .filter(todo => !todo.completed) 
-            .map(x => (
+        {incompleteTodos.length > 0 && (
+          <div className="incompleteTodos">
+            <h2>Incomplete</h2>
+            {incompleteTodos.map(x => (
               <div className="userDetailTodo" key={x.id}>
                 <p>{x.todo}</p>
               </div>
             ))}
-        </div>
+          </div>
+        )}
       </div>
     </div>
-  )
+  );
 }

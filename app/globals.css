@@ -29,6 +29,25 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+.header {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+
+  button {
+    background-color: #0074e8;
+    color: #f9f9f9;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+}
+
 .homeContainer {
   width: 1300px;
   margin: 0 auto;
