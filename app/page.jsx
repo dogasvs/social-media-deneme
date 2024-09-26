@@ -23,7 +23,7 @@ export default async function Home() {
             <div className="location"> <Location /> <p> {x.address.country}</p> </div>
             <div className="location"> <School /> <p> {x.university}</p> </div>
           </div>
-            <Link href="#" className="seeProfile">see profile</Link>
+            <Link href={`/users/${x.id}`} className="seeProfile">see profile</Link>
         </div>
       ))}
     </div>
